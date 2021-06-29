@@ -1,15 +1,24 @@
 package com.dio.api.persons.apipersons.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.dio.api.persons.apipersons.domain.Person;
+import com.dio.api.persons.apipersons.service.ServicePerson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/v1/persons")
 public class PersonController {
 
-    @GetMapping
-    String helloWorld() {
-        return "Olá mundo!";
+    private ServicePerson service;
+
+    @Autowired
+    public PersonController(ServicePerson service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    ResponseEntity<Person> create(@RequestBody Person person) {
+        return ResponseEntity.ok(service.create(person));
     }
 }
