@@ -1,15 +1,16 @@
 package com.dio.api.persons.apipersons.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public enum PhoneType {
-    RESIDENCIAL("RESIDENCIAL"),
+    RESIDENTIAL("RESIDENTIAL"),
     MOBILE("MOBILE"),
     COMMERCIAL("COMMERCIAL");
 
     private final String description;
+
+    private PhoneType(String description) {
+        this.description = description;
+    }
 }
