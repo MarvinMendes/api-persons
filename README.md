@@ -10,7 +10,7 @@
 
 ### [heroku.api.persons.com](https://api-persons-manager.herokuapp.com/api/v1/persons)
 
-### Eu recomendo que você use o Postman para testar a API, ela aceita os métodos POST, GET, DELETE e PUT, tem também um método para busca por ID pelar URL
+### Eu recomendo que você use o Postman para testar a API, ela aceita os métodos POST, GET, DELETE e PUT, tem também um método para busca por ID pelar URL. A única restrição criada é que o CPF não pode se repetir para diferentes registros!
 
 ### Este é um exemplo do Json que você pode usar para criar um Person com o POST!
 
