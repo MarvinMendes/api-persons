@@ -43,6 +43,7 @@ public class PersonService {
     }
 
 
+    @Transactional(readOnly = true)
     public PersonDTO getById(Long id) throws PersonNotFoundedException {
         Person personFounded = findById(id);
         return mapper.toDTO(personFounded);
@@ -50,5 +51,17 @@ public class PersonService {
 
     private Person findById(Long id) throws PersonNotFoundedException {
         return repository.findById(id).orElseThrow(() -> new PersonNotFoundedException(id));
+    }
+
+    public void delete(Long id) throws PersonNotFoundedException {
+        Person person = findById(id);
+        repository.delete(person);
+    }
+
+
+    public PersonDTO replace(PersonDTO dto) throws PersonNotFoundedException {
+        findById(dto.getId());
+        PersonDTO personUpdatet = create(dto);
+        return personUpdatet;
     }
 }

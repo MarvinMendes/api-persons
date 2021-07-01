@@ -1,8 +1,10 @@
 package com.dio.api.persons.apipersons.controller;
 
+import com.dio.api.persons.apipersons.domain.Person;
 import com.dio.api.persons.apipersons.dto.PersonDTO;
 import com.dio.api.persons.apipersons.exception.PersonNotFoundedException;
 import com.dio.api.persons.apipersons.service.PersonService;
+import org.aspectj.weaver.patterns.ReferencePointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,5 +39,15 @@ public class PersonController {
         return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void delete(@PathVariable Long id) throws PersonNotFoundedException {
+        service.delete(id);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<PersonDTO> replace(@RequestBody PersonDTO dto) throws PersonNotFoundedException {
+        return new ResponseEntity<>(service.replace(dto), HttpStatus.ACCEPTED);
+    }
 
 }
