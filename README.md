@@ -4,6 +4,8 @@
 * **Java-11**
 * **Spring**
 * **JPA**
+* **Lombok**
+* **MapStruct**
 * **Heroku**
 
 ## A API está disponível no Heroku pelo link abaixo.
