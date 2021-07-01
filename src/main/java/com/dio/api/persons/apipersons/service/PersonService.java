@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @NoArgsConstructor
 public class PersonService {
@@ -30,6 +33,11 @@ public class PersonService {
         return mapper.toDTO(personSaved);
     }
 
-
-
+    @Transactional(readOnly = true)
+    public List<PersonDTO> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }
