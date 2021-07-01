@@ -2,6 +2,7 @@ package com.dio.api.persons.apipersons.service;
 
 import com.dio.api.persons.apipersons.domain.Person;
 import com.dio.api.persons.apipersons.dto.PersonDTO;
+import com.dio.api.persons.apipersons.exception.PersonNotFoundedException;
 import com.dio.api.persons.apipersons.mapper.PersonMapper;
 import com.dio.api.persons.apipersons.repository.PersonRepository;
 import lombok.NoArgsConstructor;
@@ -39,5 +40,15 @@ public class PersonService {
                 .stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+
+    public PersonDTO getById(Long id) throws PersonNotFoundedException {
+        Person personFounded = findById(id);
+        return mapper.toDTO(personFounded);
+    }
+
+    private Person findById(Long id) throws PersonNotFoundedException {
+        return repository.findById(id).orElseThrow(() -> new PersonNotFoundedException(id));
     }
 }

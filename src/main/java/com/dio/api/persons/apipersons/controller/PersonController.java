@@ -1,6 +1,7 @@
 package com.dio.api.persons.apipersons.controller;
 
 import com.dio.api.persons.apipersons.dto.PersonDTO;
+import com.dio.api.persons.apipersons.exception.PersonNotFoundedException;
 import com.dio.api.persons.apipersons.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,5 +31,11 @@ public class PersonController {
     ResponseEntity<List<PersonDTO>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<PersonDTO> getById(@PathVariable Long id) throws PersonNotFoundedException {
+        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    }
+
 
 }
