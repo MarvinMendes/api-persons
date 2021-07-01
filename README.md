@@ -6,7 +6,7 @@
 * **JPA**
 * **Heroku**
 
-## A API está disponível no Herolu pelo link abaixo.
+## A API está disponível no Heroku pelo link abaixo.
 
 ### [heroku.api.persons.com](https://api-persons-manager.herokuapp.com/api/v1/persons)
 
